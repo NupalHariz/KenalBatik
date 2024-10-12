@@ -35,22 +35,22 @@ func InitBatikHandler(router *gin.Engine, batikService service.BatikService) {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/batiks [get]
+// @Router /batiks [get]
 func (b *BatikHandler) GetAllBatik(c *gin.Context) {
 	var (
-		err error
-		code int = http.StatusBadRequest
-		message string = "failed to get all batik"
-		res interface{}
+		err        error
+		code       int    = http.StatusBadRequest
+		message    string = "failed to get all batik"
+		res        interface{}
 		batikParam domain.BatikParams
 	)
 
-	sendResp := func ()  {
+	sendResp := func() {
 		helper.SendResponse(
-			c, 
-			code, 
-			message, 
-			res, 
+			c,
+			code,
+			message,
+			res,
 			err,
 		)
 	}
@@ -85,16 +85,16 @@ func (b *BatikHandler) GetAllBatik(c *gin.Context) {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/batiks/{batikId} [get]
+// @Router /batiks/{batikId} [get]
 func (h *BatikHandler) GetBatikByID(c *gin.Context) {
 	var (
-		err error
-		code int = http.StatusBadRequest
+		err     error
+		code    int    = http.StatusBadRequest
 		message string = "failed to get batik by id"
-		res interface{}
+		res     interface{}
 	)
 
-	sendResp := func ()  {
+	sendResp := func() {
 		helper.SendResponse(c, code, message, res, err)
 	}
 

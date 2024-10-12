@@ -39,13 +39,13 @@ func InitQuizHandler(app *gin.Engine, quizSvc service.QuizService, middleware mi
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
 // @Security Bearer
-// @Router /api/v1/quizzes [get]
+// @Router /quizzes [get]
 func (h *QuizHandler) GetQuizzes(ctx *gin.Context) {
-	var(
-		err error
-		code int = http.StatusBadRequest
+	var (
+		err     error
+		code    int    = http.StatusBadRequest
 		message string = "failed to get quizzes"
-		res interface{}
+		res     interface{}
 	)
 
 	sendResp := func() {
@@ -88,13 +88,13 @@ func (h *QuizHandler) GetQuizzes(ctx *gin.Context) {
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
 // @Security Bearer
-// @Router /api/v1/quizzes/check [post]
+// @Router /quizzes/check [post]
 func (h *QuizHandler) CheckAnswer(ctx *gin.Context) {
 	var (
-		err error
+		err     error
 		message string = "failed to check answer"
-		code int = http.StatusBadRequest
-		res interface{}
+		code    int    = http.StatusBadRequest
+		res     interface{}
 	)
 
 	sendResp := func() {

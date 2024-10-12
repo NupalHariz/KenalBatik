@@ -42,6 +42,7 @@ func (s *userService) RegisterUser(ctx context.Context, userRegister domain.User
 
 	var user domain.User
 
+	//Ga guna udah ada unique constraint di db
 	err := s.userRepo.FindUser(ctx, &user, domain.UserParam{Email: userRegister.Email})
 	if err != nil {
 		if err != domain.ErrRecordNotFound {

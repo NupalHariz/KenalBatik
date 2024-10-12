@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"kenalbatik-be/internal/domain"
 	quizRepo "kenalbatik-be/internal/quiz/repository"
 	userRepo "kenalbatik-be/internal/user/repository"
@@ -111,10 +112,20 @@ func (s *quizService) CheckAnswer(ctx context.Context, userId uuid.UUID, userAns
 		user.Tier = domain.TIER1
 	}
 
+	quizIdJson, err := json.Marshal(userAnswer.QuizID)
+	if err != nil {
+		return domain.AnswerResponse{}, err
+	}
+
+	userAnswerJson, err := json.Marshal(userAnswer.UserAnswer)
+	if err != nil {
+		return domain.AnswerResponse{}, err
+	}
+
 	userAnswerData := domain.UserAnswer{
 		UserID:             userId,
-		QuizID:             userAnswer.QuizID,
-		UserAnswer:         userAnswer.UserAnswer,
+		QuizID:             quizIdJson,
+		UserAnswer:         userAnswerJson,
 		TotalCorrectAnswer: correctAnswer,
 	}
 

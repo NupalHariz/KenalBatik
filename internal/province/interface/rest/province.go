@@ -33,7 +33,7 @@ type ProvinceHandler struct {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/provinces [get]
+// @Router /provinces [get]
 func (h *ProvinceHandler) GetAllProvince(ctx *gin.Context) {
 	var (
 		err     error
@@ -72,7 +72,7 @@ func (h *ProvinceHandler) GetAllProvince(ctx *gin.Context) {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/provinces/{provinceId} [get]
+// @Router /provinces/{provinceId} [get]
 func (h *ProvinceHandler) GetProvinceByID(ctx *gin.Context) {
 	var (
 		err     error

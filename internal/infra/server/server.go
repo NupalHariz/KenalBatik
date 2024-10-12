@@ -53,7 +53,7 @@ func (s *server) Run(port string) {
 }
 
 func (s *server) MountSwagger() {
-	docs.SwaggerInfo.BasePath = "api/v1"
+	docs.SwaggerInfo.BasePath = "/api/v1"
 	s.app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }
 

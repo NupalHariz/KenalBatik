@@ -1,16 +1,16 @@
 package rest
 
 import (
-	"kenalbatik-be/internal/island/service"
 	"kenalbatik-be/internal/domain"
 	"kenalbatik-be/internal/infra/helper"
+	"kenalbatik-be/internal/island/service"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-type IslandHandler struct{
+type IslandHandler struct {
 	islandService service.IslandService
 }
 
@@ -32,7 +32,7 @@ func InitIslandHandler(router *gin.Engine, islandService service.IslandService) 
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/islands [get]
+// @Router /islands [get]
 func (h *IslandHandler) GetIslands(ctx *gin.Context) {
 	var (
 		err     error
@@ -73,7 +73,7 @@ func (h *IslandHandler) GetIslands(ctx *gin.Context) {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /api/v1/islands/{islandId} [get]
+// @Router /islands/{islandId} [get]
 func (h *IslandHandler) GetIslandByID(ctx *gin.Context) {
 	var (
 		err     error

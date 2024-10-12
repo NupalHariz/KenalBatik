@@ -25,11 +25,15 @@ definitions:
     type: object
   domain.BatikResponse:
     properties:
+      city:
+        type: string
       description:
         type: string
       id:
         type: integer
       island:
+        type: string
+      java_name:
         type: string
       link_image:
         type: string
@@ -77,15 +81,22 @@ definitions:
         type: string
       question:
         type: string
+      user_quiz:
+        items:
+          $ref: '#/definitions/domain.UserAnswer'
+        type: array
     type: object
   domain.ResetPassword:
     properties:
       confirm_password:
         type: string
+      forgot_password_token:
+        type: string
       password:
         type: string
     required:
     - confirm_password
+    - forgot_password_token
     - password
     type: object
   domain.User:
@@ -106,7 +117,26 @@ definitions:
         type: string
       tier:
         type: string
+      user_quiz:
+        items:
+          $ref: '#/definitions/domain.UserAnswer'
+        type: array
       username:
+        type: string
+    type: object
+  domain.UserAnswer:
+    properties:
+      quiz_id:
+        items:
+          type: integer
+        type: array
+      total_correct_answer:
+        type: integer
+      user_answer:
+        items:
+          type: string
+        type: array
+      user_id:
         type: string
     type: object
   domain.UserForgotPassword:
@@ -168,7 +198,7 @@ info:
   contact: {}
   license: {}
 paths:
-  /api/v1/batiks:
+  /batiks:
     get:
       consumes:
       - application/json
@@ -208,7 +238,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - batiks
-  /api/v1/batiks/{batikId}:
+  /batiks/{batikId}:
     get:
       consumes:
       - application/json
@@ -249,7 +279,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - batiks
-  /api/v1/islands:
+  /islands:
     get:
       consumes:
       - application/json
@@ -280,7 +310,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - islands
-  /api/v1/islands/{islandId}:
+  /islands/{islandId}:
     get:
       consumes:
       - application/json
@@ -321,7 +351,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - islands
-  /api/v1/provinces:
+  /provinces:
     get:
       consumes:
       - application/json
@@ -352,7 +382,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - provinces
-  /api/v1/provinces/{provinceId}:
+  /provinces/{provinceId}:
     get:
       consumes:
       - application/json
@@ -393,7 +423,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - provinces
-  /api/v1/quizzes:
+  /quizzes:
     get:
       consumes:
       - application/json
@@ -430,7 +460,7 @@ paths:
       - Bearer: []
       tags:
       - quizzes
-  /api/v1/quizzes/check:
+  /quizzes/check:
     post:
       consumes:
       - application/json
@@ -474,7 +504,7 @@ paths:
       - Bearer: []
       tags:
       - quizzes
-  /api/v1/users/{userId}:
+  /users/{userId}:
     get:
       consumes:
       - application/json
@@ -517,7 +547,7 @@ paths:
       - Bearer: []
       tags:
       - users
-  /api/v1/users/forgot-password:
+  /users/forgot-password:
     post:
       consumes:
       - application/json
@@ -554,7 +584,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - users
-  /api/v1/users/login:
+  /users/login:
     post:
       consumes:
       - application/json
@@ -596,7 +626,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - users
-  /api/v1/users/oauth:
+  /users/oauth:
     get:
       consumes:
       - application/json
@@ -615,7 +645,7 @@ paths:
               type: object
       tags:
       - users
-  /api/v1/users/oauth/callback:
+  /users/oauth/callback:
     get:
       consumes:
       - application/json
@@ -630,7 +660,7 @@ paths:
             type: string
       tags:
       - users
-  /api/v1/users/register:
+  /users/register:
     post:
       consumes:
       - application/json
@@ -672,7 +702,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - users
-  /api/v1/users/reset-password/{resetPasswordToken}:
+  /users/reset-password/{resetPasswordToken}:
     post:
       consumes:
       - application/json

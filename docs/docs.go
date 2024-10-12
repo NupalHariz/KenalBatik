@@ -25,7 +25,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/v1/batiks": {
+        "/batiks": {
             "get": {
                 "description": "Get All Batik",
                 "consumes": [
@@ -91,7 +91,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/batiks/{batikId}": {
+        "/batiks/{batikId}": {
             "get": {
                 "description": "Get Batik By ID",
                 "consumes": [
@@ -158,7 +158,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/islands": {
+        "/islands": {
             "get": {
                 "description": "Get All Island",
                 "consumes": [
@@ -210,7 +210,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/islands/{islandId}": {
+        "/islands/{islandId}": {
             "get": {
                 "description": "Get Island By ID",
                 "consumes": [
@@ -277,7 +277,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/provinces": {
+        "/provinces": {
             "get": {
                 "description": "Get All Province",
                 "consumes": [
@@ -329,7 +329,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/provinces/{provinceId}": {
+        "/provinces/{provinceId}": {
             "get": {
                 "description": "Get Province By ID",
                 "consumes": [
@@ -396,7 +396,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/quizzes": {
+        "/quizzes": {
             "get": {
                 "security": [
                     {
@@ -459,7 +459,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/quizzes/check": {
+        "/quizzes/check": {
             "post": {
                 "security": [
                     {
@@ -533,7 +533,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/forgot-password": {
+        "/users/forgot-password": {
             "post": {
                 "description": "Forgot Password",
                 "consumes": [
@@ -590,7 +590,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/login": {
+        "/users/login": {
             "post": {
                 "description": "Login User",
                 "consumes": [
@@ -659,7 +659,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/oauth": {
+        "/users/oauth": {
             "get": {
                 "description": "Oauth Login",
                 "consumes": [
@@ -693,7 +693,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/oauth/callback": {
+        "/users/oauth/callback": {
             "get": {
                 "description": "Oauth Callback",
                 "consumes": [
@@ -715,7 +715,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/register": {
+        "/users/register": {
             "post": {
                 "description": "Register User",
                 "consumes": [
@@ -784,7 +784,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/reset-password/{resetPasswordToken}": {
+        "/users/reset-password/{resetPasswordToken}": {
             "post": {
                 "description": "Reset Password",
                 "consumes": [
@@ -848,7 +848,7 @@ var doc = `{
                 }
             }
         },
-        "/api/v1/users/{userId}": {
+        "/users/{userId}": {
             "get": {
                 "security": [
                     {
@@ -962,6 +962,9 @@ var doc = `{
         "domain.BatikResponse": {
             "type": "object",
             "properties": {
+                "city": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -969,6 +972,9 @@ var doc = `{
                     "type": "integer"
                 },
                 "island": {
+                    "type": "string"
+                },
+                "java_name": {
                     "type": "string"
                 },
                 "link_image": {
@@ -1041,6 +1047,12 @@ var doc = `{
                 },
                 "question": {
                     "type": "string"
+                },
+                "user_quiz": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.UserAnswer"
+                    }
                 }
             }
         },
@@ -1048,10 +1060,14 @@ var doc = `{
             "type": "object",
             "required": [
                 "confirm_password",
+                "forgot_password_token",
                 "password"
             ],
             "properties": {
                 "confirm_password": {
+                    "type": "string"
+                },
+                "forgot_password_token": {
                     "type": "string"
                 },
                 "password": {
@@ -1086,7 +1102,36 @@ var doc = `{
                 "tier": {
                     "type": "string"
                 },
+                "user_quiz": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/domain.UserAnswer"
+                    }
+                },
                 "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.UserAnswer": {
+            "type": "object",
+            "properties": {
+                "quiz_id": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "total_correct_answer": {
+                    "type": "integer"
+                },
+                "user_answer": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "user_id": {
                     "type": "string"
                 }
             }
