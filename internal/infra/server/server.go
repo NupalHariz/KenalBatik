@@ -2,7 +2,6 @@ package server
 
 import (
 	"kenalbatik-be/docs"
-	islandSvc "kenalbatik-be/internal/island/service"
 	batikRest "kenalbatik-be/internal/batik/interface/rest"
 	batikRepo "kenalbatik-be/internal/batik/repository"
 	batikSvc "kenalbatik-be/internal/batik/service"
@@ -11,6 +10,7 @@ import (
 	"kenalbatik-be/internal/infra/oauth"
 	islandRest "kenalbatik-be/internal/island/interface/rest"
 	islandRepo "kenalbatik-be/internal/island/repository"
+	islandSvc "kenalbatik-be/internal/island/service"
 	"kenalbatik-be/internal/middleware"
 	provinceRest "kenalbatik-be/internal/province/interface/rest"
 	provinceRepo "kenalbatik-be/internal/province/repository"
@@ -32,15 +32,18 @@ import (
 type Server interface {
 	Run(port string)
 	MountRoutes(db *gorm.DB)
+	MountMiddleware()
 	MountSwagger()
 }
 
 type server struct {
-	app *gin.Engine
+	app        *gin.Engine
+	middleware middleware.Middleware
 }
 
-func NewServer() Server {
+func NewServer(middleware middleware.Middleware) Server {
 	return &server{
+		middleware: middleware,
 		app: gin.Default(),
 	}
 }
@@ -55,6 +58,10 @@ func (s *server) Run(port string) {
 func (s *server) MountSwagger() {
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	s.app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+}
+
+func (s *server) MountMiddleware() {
+	s.app.Use(s.middleware.CORS())
 }
 
 func (s *server) MountRoutes(db *gorm.DB) {
