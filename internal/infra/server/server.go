@@ -37,13 +37,11 @@ type Server interface {
 }
 
 type server struct {
-	app        *gin.Engine
-	middleware middleware.Middleware
+	app *gin.Engine
 }
 
-func NewServer(middleware middleware.Middleware) Server {
+func NewServer() Server {
 	return &server{
-		middleware: middleware,
 		app: gin.Default(),
 	}
 }
@@ -61,7 +59,7 @@ func (s *server) MountSwagger() {
 }
 
 func (s *server) MountMiddleware() {
-	s.app.Use(s.middleware.CORS())
+	s.app.Use(middleware.CORS())
 }
 
 func (s *server) MountRoutes(db *gorm.DB) {
