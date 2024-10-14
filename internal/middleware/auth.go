@@ -1,21 +1,10 @@
 package middleware
 
 import (
-	"kenalbatik-be/internal/infra/jwt"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 )
-
-type Middleware struct {
-	jwt jwt.JWTInterface
-}
-
-func NewMiddleware(jwt jwt.JWTInterface) *Middleware {
-	return &Middleware{
-		jwt: jwt,
-	}
-}
 
 func (m *Middleware) Authentication(c *gin.Context) {
 	bearerToken := c.GetHeader("Authorization")
