@@ -99,6 +99,13 @@ definitions:
     - forgot_password_token
     - password
     type: object
+  domain.Tier:
+    properties:
+      tier:
+        type: string
+      tier_photo_link:
+        type: string
+    type: object
   domain.User:
     properties:
       email:
@@ -117,6 +124,9 @@ definitions:
         type: string
       tier:
         type: string
+      tier_details:
+        $ref: '#/definitions/domain.Tier'
+        type: object
       user_quiz:
         items:
           $ref: '#/definitions/domain.UserAnswer'
@@ -508,49 +518,6 @@ paths:
       - Bearer: []
       tags:
       - quizzes
-  /users/{userId}:
-    get:
-      consumes:
-      - application/json
-      description: Get User By ID
-      parameters:
-      - description: User ID
-        in: path
-        name: userId
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success get user by id
-          schema:
-            allOf:
-            - $ref: '#/definitions/helper.Response'
-            - properties:
-                data:
-                  $ref: '#/definitions/domain.User'
-              type: object
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/helper.ErrorResponse'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/helper.ErrorResponse'
-        "408":
-          description: Request Timeout
-          schema:
-            $ref: '#/definitions/helper.ErrorResponse'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/helper.ErrorResponse'
-      security:
-      - Bearer: []
-      tags:
-      - users
   /users/forgot-password:
     post:
       consumes:
@@ -662,6 +629,43 @@ paths:
             fails
           schema:
             type: string
+      tags:
+      - users
+  /users/profile:
+    get:
+      consumes:
+      - application/json
+      description: Get User
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success get user
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/domain.User'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/helper.ErrorResponse'
+        "408":
+          description: Request Timeout
+          schema:
+            $ref: '#/definitions/helper.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.ErrorResponse'
+      security:
+      - Bearer: []
       tags:
       - users
   /users/register:

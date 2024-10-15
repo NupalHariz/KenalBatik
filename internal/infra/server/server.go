@@ -82,7 +82,7 @@ func (s *server) MountRoutes(db *gorm.DB) {
 	islandService := islandSvc.NewIslandService(islandRepo)
 
 	batikRest.InitBatikHandler(s.app, batikService)
-	userRest.InitUserHandler(s.app, userService, oauth)
+	userRest.InitUserHandler(s.app, userService, oauth, *middleware)
 	quizRest.InitQuizHandler(s.app, quizService, *middleware)
 	provinceRest.InitProvinceHandler(s.app, provinceService)
 	islandRest.InitIslandHandler(s.app, islandService)

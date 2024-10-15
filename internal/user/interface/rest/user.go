@@ -6,6 +6,7 @@ import (
 	"kenalbatik-be/internal/domain"
 	"kenalbatik-be/internal/infra/helper"
 	"kenalbatik-be/internal/infra/oauth"
+	"kenalbatik-be/internal/middleware"
 	"kenalbatik-be/internal/user/service"
 	"net/http"
 
@@ -17,12 +18,14 @@ import (
 type UserHandler struct {
 	userSvc service.UserService
 	oauth   oauth.OauthInterface
+	middleware middleware.Middleware
 }
 
-func InitUserHandler(app *gin.Engine, userSvc service.UserService, oauth oauth.OauthInterface) {
+func InitUserHandler(app *gin.Engine, userSvc service.UserService, oauth oauth.OauthInterface, middleware middleware.Middleware) {
 	userHandler := UserHandler{
 		userSvc: userSvc,
 		oauth:   oauth,
+		middleware: middleware,
 	}
 
 	user := app.Group("api/v1/users")
@@ -33,7 +36,7 @@ func InitUserHandler(app *gin.Engine, userSvc service.UserService, oauth oauth.O
 	user.GET("/oauth/callback", userHandler.OauthCallback)
 	user.POST("/forgot-password", userHandler.ForgotPassword)
 	user.POST("/reset-password/:resetPasswordToken", userHandler.ResetPassword)
-	user.GET("/:userId", userHandler.GetUserByID)
+	user.GET("/profile", middleware.Authentication, userHandler.GetUser)
 }
 
 // @Description Register User
@@ -316,23 +319,22 @@ func (h *UserHandler) ResetPassword(ctx *gin.Context) {
 	message = "success reset password"
 }
 
-// @Description Get User By ID
+// @Description Get User
 // @Tags users
 // @Accept json
 // @Produce json
-// @Param userId path string true "User ID"
-// @Success 200 {object} helper.Response{data=domain.User} "success get user by id"
+// @Success 200 {object} helper.Response{data=domain.User} "success get user"
 // @Failure 400 {object} helper.ErrorResponse
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
 // @Security Bearer
-// @Router /users/{userId} [get]
-func (h *UserHandler) GetUserByID(ctx *gin.Context) {
+// @Router /users/profile [get]
+func (h *UserHandler) GetUser(ctx *gin.Context) {
 	var (
 		err     error
 		code    int    = http.StatusBadRequest
-		message string = "failed to get user by id"
+		message string = "failed to get user"
 		res     interface{}
 	)
 
@@ -347,8 +349,9 @@ func (h *UserHandler) GetUserByID(ctx *gin.Context) {
 	}
 	defer sendResp()
 
-	userIdString := ctx.Param("userId")
-	userId, err := uuid.Parse(userIdString)
+	userIdString, _ := ctx.Get("id")
+
+	userId, err := uuid.Parse(userIdString.(string))
 	if err != nil {
 		return
 	}
@@ -360,5 +363,5 @@ func (h *UserHandler) GetUserByID(ctx *gin.Context) {
 		return
 	}
 
-	message = "success get user by id"
+	message = "success get user"
 }
