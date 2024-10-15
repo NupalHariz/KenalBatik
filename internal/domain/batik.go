@@ -15,8 +15,9 @@ type Batik struct {
 
 type BatikParams struct {
 	ID       int    `json:"id"`
-	Province string `json:"province"`
-	Island   string `json:"island"`
+	ProvinceID string `json:"province"`
+	IslandID   string `json:"island"`
+	Page     int    `json:"page" gorm:"-"`
 }
 
 type BatikResponse struct {

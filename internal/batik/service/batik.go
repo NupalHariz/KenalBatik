@@ -2,17 +2,17 @@ package service
 
 import (
 	"context"
-	"kenalbatik-be/internal/domain"
 	batikRepo "kenalbatik-be/internal/batik/repository"
+	"kenalbatik-be/internal/domain"
 	"time"
 )
 
 type BatikService interface {
-	GetAllBatik(ctx context.Context, batikParam domain.BatikParams, from string) ([]domain.BatikResponse, error)
+	GetAllBatik(ctx context.Context, batikParam domain.BatikParams) ([]domain.BatikResponse, error)
 	GetBatikByID(ctx context.Context, batikID int) (domain.BatikResponse, error)
 }
 
-type batikService struct{
+type batikService struct {
 	batikRepository batikRepo.BatikRepository
 }
 
@@ -22,25 +22,25 @@ func NewBatikService(batikRepo batikRepo.BatikRepository) BatikService {
 	}
 }
 
-func (s *batikService) GetAllBatik(ctx context.Context, batikParam domain.BatikParams, from string) ([]domain.BatikResponse, error) {
+func (s *batikService) GetAllBatik(ctx context.Context, batikParam domain.BatikParams) ([]domain.BatikResponse, error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
 	var batiks []domain.Batik
 
 	err := s.batikRepository.FindAll(ctx, &batiks, batikParam)
-	
+
 	var batikResponses []domain.BatikResponse
 	for _, batik := range batiks {
 		batikResponse := domain.BatikResponse{
-			ID: batik.ID,
-			Name: batik.Name,
-			JavaName: batik.JavaName,
-			City: batik.City,
-			Province: batik.Province.Name,
-			Island: batik.Island.Name,
+			ID:          batik.ID,
+			Name:        batik.Name,
+			JavaName:    batik.JavaName,
+			City:        batik.City,
+			Province:    batik.Province.Name,
+			Island:      batik.Island.Name,
 			Description: batik.Description,
-			Link_Image: batik.Link_Image,
+			Link_Image:  batik.Link_Image,
 		}
 		batikResponses = append(batikResponses, batikResponse)
 	}
@@ -64,14 +64,14 @@ func (s *batikService) GetBatikByID(ctx context.Context, batikId int) (domain.Ba
 	}
 
 	batikResponse := domain.BatikResponse{
-		ID: batik.ID,
-		Name: batik.Name,
-		JavaName: batik.JavaName,
-		Province: batik.Province.Name,
-		Island: batik.Island.Name,
-		City: batik.City,
+		ID:          batik.ID,
+		Name:        batik.Name,
+		JavaName:    batik.JavaName,
+		Province:    batik.Province.Name,
+		Island:      batik.Island.Name,
+		City:        batik.City,
 		Description: batik.Description,
-		Link_Image: batik.Link_Image,
+		Link_Image:  batik.Link_Image,
 	}
 
 	select {

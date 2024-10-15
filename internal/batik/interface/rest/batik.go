@@ -56,16 +56,28 @@ func (b *BatikHandler) GetAllBatik(c *gin.Context) {
 	}
 	defer sendResp()
 
-	from := c.Query("from")
+	province := c.Query("province")
+	island := c.Query("island")
 
-	if from != "" {
-		err := c.ShouldBindJSON(&batikParam)
+	page := c.Query("page")
+	if page != "" {
+		pageInt, err := strconv.Atoi(page)
 		if err != nil {
 			return
 		}
+
+		if pageInt < 0 {
+			return
+		}
+
+		batikParam.Page = pageInt
 	}
 
-	res, err = b.batikService.GetAllBatik(c, batikParam, from)
+	batikParam.ProvinceID = province
+	batikParam.IslandID = island
+
+	res, err = b.batikService.GetAllBatik(c, batikParam)
+
 	code = domain.GetCode(err)
 
 	if err != nil {

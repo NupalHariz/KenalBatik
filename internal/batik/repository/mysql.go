@@ -21,7 +21,12 @@ func NewBatikRepository(db *gorm.DB) BatikRepository {
 }
 
 func (r *batikRepository) FindAll(ctx context.Context, batiks *[]domain.Batik, batikParam domain.BatikParams) error {
-	err := r.db.WithContext(ctx).Preload("Province").Preload("Island").Find(&batiks, batikParam).Error
+	query := r.db.WithContext(ctx).Preload("Province").Preload("Island")
+	if batikParam.Page > 0 {
+		query = query.Offset((batikParam.Page - 1) * 9).Limit(9)
+	}
+
+	err := query.Find(&batiks, batikParam).Error
 	if err != nil {
 		if len(*batiks) == 0 {
 			return domain.ErrRecordNotFound
