@@ -142,7 +142,12 @@ func (h *UserHandler) Login(ctx *gin.Context) {
 // @Success 200 {object} helper.Response{data=domain.OauthRedirectLink} "success get oauth redirect link"
 // @Router /users/oauth [get]
 func (h *UserHandler) Oauth(ctx *gin.Context) {
-	url := h.oauth.GetConfig().AuthCodeURL("state", oauth2.AccessTypeOffline)
+	referer := ctx.Request.Referer()
+	if referer == "" {
+		referer = "http://localhost:8080/api/v1/batiks"
+	}
+
+	url := h.oauth.GetConfig().AuthCodeURL(referer, oauth2.AccessTypeOffline)
 
 	resp := domain.OauthRedirectLink{
 		RedirectLink: url,
@@ -171,11 +176,16 @@ func (h *UserHandler) OauthCallback(ctx *gin.Context) {
 		res     interface{}
 	)
 
+	referer := ctx.Query("state")
+	if referer == "" {
+		referer = "http://localhost:8080/api/v1/batiks"
+	}
+
 	sendResp := func() {
 		if err != nil {
-			ctx.Redirect(301, fmt.Sprintf("localhost:3000/oauth/login/redirect?code=%v&message=%v", code, message))
+			ctx.Redirect(301, fmt.Sprintf("%s?code=%v&message=%v", referer, code, message))
 		} else {
-			ctx.Redirect(301, fmt.Sprintf("localhost:3000/oauth/login/redirect?code=%v&message=%v&token=%v", code, message, res))
+			ctx.Redirect(301, fmt.Sprintf("%s?code=%v&message=%v&token=%v", referer, code, message, res))
 		}
 	}
 	defer sendResp()
