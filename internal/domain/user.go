@@ -9,11 +9,11 @@ import (
 type UserTier string
 
 const (
-	TIER1 UserTier = "TIER1"
-	TIER2 UserTier = "TIER2"
-	TIER3 UserTier = "TIER3"
-	TIER4 UserTier = "TIER4"
-	TIER5 UserTier = "TIER5"
+	TIER1 UserTier = "Batik Pemula"
+	TIER2 UserTier = "Batik Penjelajah"
+	TIER3 UserTier = "Batik Satria"
+	TIER4 UserTier = "Batik Jawara"
+	TIER5 UserTier = "Batik Legenda"
 )
 
 type User struct {
@@ -23,7 +23,7 @@ type User struct {
 	Password              string       `json:"password"`
 	Experience            int          `json:"experience"`
 	Level                 int          `json:"level"`
-	Tier                  UserTier     `json:"tier" gorm:"type:ENUM('TIER1', 'TIER2', 'TIER3', 'TIER4', 'TIER5')"`
+	Tier                  UserTier     `json:"tier" gorm:"type:ENUM('Batik Pemula', 'Batik Penjelajah', 'Batik Satria', 'Batik Jawara', 'Batik Legenda')"`
 	ForgotPasswordToken   string       `json:"forgot_password_token"`
 	ForgotPasswordExpired time.Time    `json:"forgot_password_expired" gorm:"type:datetime"`
 	UserQuiz              []UserAnswer `json:"user_quiz" gorm:"foreignKey:UserID"`

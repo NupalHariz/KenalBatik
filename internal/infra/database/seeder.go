@@ -47,6 +47,15 @@ func SeedData(db *gorm.DB) {
 		generateQuiz(db)
 	}
 
+	var totalTiers int64
+
+	if err := db.Model(domain.Tier{}).Count(&totalTiers).Error; err != nil {
+		panic(err)
+	}
+
+	if totalTiers == 0 {
+		generateTier(db)
+	}
 }
 
 func generateBatik(db *gorm.DB) {
@@ -730,6 +739,35 @@ func generateIsland(db *gorm.DB) {
 	}
 
 	if err := db.CreateInBatches(island, len(island)).Error; err != nil {
+		panic(err)
+	}
+}
+
+func generateTier(db *gorm.DB) {
+	tier := []domain.Tier{
+		{
+			Tier: string(domain.TIER1),
+			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20PEMULA.svg?t=2024-10-15T15%3A41%3A04.408Z",
+		},
+		{
+			Tier: string(domain.TIER2),
+			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20PENJELAJAH.svg?t=2024-10-15T15%3A41%3A14.083Z",
+		},
+		{
+			Tier: string(domain.TIER3),
+			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20SATRIA.svg?t=2024-10-15T15%3A41%3A21.448Z",
+		},
+		{
+			Tier: string(domain.TIER4),
+			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20JAWARA.svg?t=2024-10-15T15%3A41%3A36.069Z",
+		},
+		{
+			Tier: string(domain.TIER5),
+			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20LEGENDA.svg",
+		},
+	}
+
+	if err := db.CreateInBatches(tier, len(tier)).Error; err != nil {
 		panic(err)
 	}
 }
