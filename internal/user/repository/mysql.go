@@ -22,7 +22,7 @@ func NewUserepository(db *gorm.DB) Userepository {
 }
 
 func (r *userepository) FindUser(ctx context.Context, user *domain.User, userParam domain.UserParam) error {
-	err := r.db.WithContext(ctx).Preload("UserQuiz").First(&user, userParam).Error
+	err := r.db.WithContext(ctx).Preload("UserQuiz").Preload("Tier").First(&user, userParam).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return domain.ErrRecordNotFound

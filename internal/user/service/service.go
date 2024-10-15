@@ -66,7 +66,7 @@ func (s *userService) RegisterUser(ctx context.Context, userRegister domain.User
 		Password:   string(hashPassword),
 		Experience: 0,
 		Level:      1,
-		Tier:       domain.TIER1,
+		TierID:       string(domain.TIER1),
 		ForgotPasswordToken: "",
 		ForgotPasswordExpired: time.Date(1970, 1, 1, 0, 0, 0, 0, time.Local),
 	}
@@ -133,7 +133,7 @@ func (s *userService) Oauth(ctx context.Context, user domain.UserOauth) (string,
 			Email:      user.Email,
 			Experience: 0,
 			Level:      1,
-			Tier:       domain.TIER1,
+			TierID:       string(domain.TIER1),
 			ForgotPasswordExpired: time.Date(1970, 1, 1, 0, 0, 0, 0, time.Local),
 		}
 
@@ -231,7 +231,7 @@ func (s *userService) GetUserByID(ctx context.Context, userId uuid.UUID) (domain
 
 	var user domain.User
 	err := s.userRepo.FindUser(ctx, &user, domain.UserParam{ID: userId})
-
+	
 	var totalCorrenctAnswer int
 	for _, u := range user.UserQuiz {
 		totalCorrenctAnswer += u.TotalCorrectAnswer
@@ -239,14 +239,15 @@ func (s *userService) GetUserByID(ctx context.Context, userId uuid.UUID) (domain
 
 	totalQuiz := len(user.UserQuiz) * 5
 
-	nextExp := helper.GetNextExp(user.Tier)
+	nextExp := helper.GetNextExp(domain.UserTier(user.TierID))
 
 	userResponse := domain.UserProfile{
 		Username: user.Username,
 		Email: user.Email,
 		Experience: user.Experience,
 		Level: user.Level,
-		Tier: user.Tier,
+		Tier: domain.UserTier(user.TierID),
+		TierPhotoLink: user.Tier.TierPhotoLink,
 		ExpToNextTier: nextExp,
 		TotalQuiz: totalQuiz,
 		TotalCorrectAnswer: totalCorrenctAnswer,

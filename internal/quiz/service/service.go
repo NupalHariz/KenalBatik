@@ -43,16 +43,16 @@ func (s *quizService) GetQuizzes(ctx context.Context, userId uuid.UUID) ([]domai
 
 	var quizzes []domain.Quiz
 
-	switch user.Tier {
-	case domain.TIER1:
+	switch user.TierID {
+	case string(domain.TIER1):
 		err = s.quizRepo.GetQuiz(ctx, &quizzes, "DIFFICULTY = ?", []interface{}{domain.EASY})
-	case domain.TIER2:
+	case string(domain.TIER2):
 		err = s.quizRepo.GetQuiz(ctx, &quizzes, "DIFFICULTY = ? OR DIFFICULTY = ?", []interface{}{domain.EASY, domain.MEDIUM})
-	case domain.TIER3:
+	case string(domain.TIER3):
 		err = s.quizRepo.GetQuiz(ctx, &quizzes, "DIFFICULTY = ?", []interface{}{domain.MEDIUM})
-	case domain.TIER4:
+	case string(domain.TIER4):
 		err = s.quizRepo.GetQuiz(ctx, &quizzes, "DIFFICULTY = ? OR DIFFICULTY = ?", []interface{}{domain.MEDIUM, domain.HARD})
-	case domain.TIER5:
+	case string(domain.TIER5):
 		err = s.quizRepo.GetQuiz(ctx, &quizzes, "DIFFICULTY = ?", []interface{}{domain.HARD})
 	}
 	if err != nil {
@@ -101,15 +101,15 @@ func (s *quizService) CheckAnswer(ctx context.Context, userId uuid.UUID, userAns
 	}
 
 	if user.Experience >= 100 {
-		user.Tier = domain.TIER5
+		user.TierID = string(domain.TIER5)
 	} else if user.Experience >= 75 && user.Experience < 100 {
-		user.Tier = domain.TIER4
+		user.TierID = string(domain.TIER4)
 	} else if user.Experience >= 50 && user.Experience < 70 {
-		user.Tier = domain.TIER3
+		user.TierID = string(domain.TIER3)
 	} else if user.Experience >= 25 && user.Experience < 50 {
-		user.Tier = domain.TIER2
+		user.TierID = string(domain.TIER2)
 	} else {
-		user.Tier = domain.TIER1
+		user.TierID = string(domain.TIER1)
 	}
 
 	quizIdJson, err := json.Marshal(userAnswer.QuizID)
@@ -142,7 +142,7 @@ func (s *quizService) CheckAnswer(ctx context.Context, userId uuid.UUID, userAns
 	res := domain.AnswerResponse{
 		CorrectAnswer:  correctAnswer,
 		UserExperience: user.Experience,
-		UserTier:       user.Tier,
+		UserTier:       domain.UserTier(user.TierID),
 	}
 
 	select {

@@ -23,10 +23,11 @@ type User struct {
 	Password              string       `json:"password"`
 	Experience            int          `json:"experience"`
 	Level                 int          `json:"level"`
-	Tier                  UserTier     `json:"tier" gorm:"type:ENUM('Batik Pemula', 'Batik Penjelajah', 'Batik Satria', 'Batik Jawara', 'Batik Legenda')"`
+	TierID                string       `json:"tier" gorm:"type:varchar(100);foreignKey:Tier;references:Tier"`
 	ForgotPasswordToken   string       `json:"forgot_password_token"`
 	ForgotPasswordExpired time.Time    `json:"forgot_password_expired" gorm:"type:datetime"`
 	UserQuiz              []UserAnswer `json:"user_quiz" gorm:"foreignKey:UserID"`
+	Tier                  Tier         `json:"tier_details" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
 
 type UserRegister struct {
@@ -80,6 +81,7 @@ type UserProfile struct {
 	Experience         int      `json:"experience"`
 	Level              int      `json:"level"`
 	Tier               UserTier `json:"tier"`
+	TierPhotoLink      string   `json:"tier_photo_link"`
 	ExpToNextTier      int      `json:"exp_to_next_tier"`
 	TotalQuiz          int      `json:"total_quiz"`
 	TotalCorrectAnswer int      `json:"total_correct_answer"`
