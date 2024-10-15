@@ -40,8 +40,20 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "from",
-                        "name": "from",
+                        "description": "province",
+                        "name": "province",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "island",
+                        "name": "island",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "page",
+                        "name": "page",
                         "in": "query"
                     }
                 ],
@@ -1117,19 +1129,13 @@ var doc = `{
             "type": "object",
             "properties": {
                 "quiz_id": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
+                    "type": "string"
                 },
                 "total_correct_answer": {
                     "type": "integer"
                 },
                 "user_answer": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "string"
                 },
                 "user_id": {
                     "type": "string"

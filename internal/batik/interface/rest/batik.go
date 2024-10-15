@@ -29,7 +29,9 @@ func InitBatikHandler(router *gin.Engine, batikService service.BatikService) {
 // @Tags batiks
 // @Accept json
 // @Produce json
-// @Param from query string false "from"
+// @Param province query string false "province"
+// @Param island query string false "island"
+// @Param page query string false "page"
 // @Success 200 {object} helper.Response{data=domain.BatikResponse} "success get all batik"
 // @Failure 400 {object} helper.ErrorResponse
 // @Failure 404 {object} helper.ErrorResponse

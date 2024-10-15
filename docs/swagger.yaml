@@ -127,15 +127,11 @@ definitions:
   domain.UserAnswer:
     properties:
       quiz_id:
-        items:
-          type: integer
-        type: array
+        type: string
       total_correct_answer:
         type: integer
       user_answer:
-        items:
-          type: string
-        type: array
+        type: string
       user_id:
         type: string
     type: object
@@ -204,9 +200,17 @@ paths:
       - application/json
       description: Get All Batik
       parameters:
-      - description: from
+      - description: province
         in: query
-        name: from
+        name: province
+        type: string
+      - description: island
+        in: query
+        name: island
+        type: string
+      - description: page
+        in: query
+        name: page
         type: string
       produces:
       - application/json
