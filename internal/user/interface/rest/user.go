@@ -35,7 +35,7 @@ func InitUserHandler(app *gin.Engine, userSvc service.UserService, oauth oauth.O
 	user.GET("/oauth", userHandler.Oauth)
 	user.GET("/oauth/callback", userHandler.OauthCallback)
 	user.POST("/forgot-password", userHandler.ForgotPassword)
-	user.POST("/reset-password/:resetPasswordToken", userHandler.ResetPassword)
+	user.POST("/reset-password", userHandler.ResetPassword)
 	user.GET("/profile", middleware.Authentication, userHandler.GetUser)
 }
 
@@ -307,9 +307,7 @@ func (h *UserHandler) ResetPassword(ctx *gin.Context) {
 		return
 	}
 
-	resetPasswordToken := ctx.Param("resetPasswordToken")
-
-	err = h.userSvc.ResetPassword(ctx.Request.Context(), userResetPassword, resetPasswordToken)
+	err = h.userSvc.ResetPassword(ctx.Request.Context(), userResetPassword)
 	code = domain.GetCode(err)
 
 	if err != nil {

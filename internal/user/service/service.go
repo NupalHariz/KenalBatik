@@ -18,7 +18,7 @@ type UserService interface {
 	Login(ctx context.Context, userLogin domain.UserLogin) (domain.UserLoginResponse, error)
 	Oauth(ctx context.Context, user domain.UserOauth) (string, error)
 	ForgotPassword(ctx context.Context, user domain.UserForgotPassword, referer string) error
-	ResetPassword(ctx context.Context, userReset domain.ResetPassword, resetPasswordToken string) error
+	ResetPassword(ctx context.Context, userReset domain.ResetPassword) error
 	GetUserByID(ctx context.Context, userId uuid.UUID) (domain.UserProfile, error)
 }
 
@@ -190,13 +190,13 @@ func (s *userService) ForgotPassword(ctx context.Context, userForgot domain.User
 	}
 }
 
-func (s *userService) ResetPassword(ctx context.Context, userReset domain.ResetPassword, resetPasswordToken string) error {
+func (s *userService) ResetPassword(ctx context.Context, userReset domain.ResetPassword) error {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
 	var user domain.User
 
-	err := s.userRepo.FindUser(ctx, &user, domain.UserParam{ForgotPasswordToken: resetPasswordToken})
+	err := s.userRepo.FindUser(ctx, &user, domain.UserParam{ForgotPasswordToken: userReset.ForgotPasswordToken})
 	if err != nil {
 		return err
 	}
