@@ -939,25 +939,34 @@ var doc = `{
                     "items": {
                         "type": "string"
                     }
-                },
-                "user_id": {
-                    "type": "string"
                 }
             }
         },
         "domain.AnswerResponse": {
             "type": "object",
             "properties": {
-                "correct_answer": {
+                "current_correct_answer": {
+                    "type": "integer"
+                },
+                "exp_to_next_tier": {
+                    "type": "integer"
+                },
+                "tier_photo_link": {
+                    "type": "string"
+                },
+                "total_correct_answer": {
+                    "type": "integer"
+                },
+                "total_quiz": {
                     "type": "integer"
                 },
                 "user_experience": {
                     "type": "integer"
                 },
-                "user_level": {
-                    "type": "integer"
-                },
                 "user_tier": {
+                    "type": "string"
+                },
+                "username": {
                     "type": "string"
                 }
             }

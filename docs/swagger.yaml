@@ -9,18 +9,24 @@ definitions:
         items:
           type: string
         type: array
-      user_id:
-        type: string
     type: object
   domain.AnswerResponse:
     properties:
-      correct_answer:
+      current_correct_answer:
+        type: integer
+      exp_to_next_tier:
+        type: integer
+      tier_photo_link:
+        type: string
+      total_correct_answer:
+        type: integer
+      total_quiz:
         type: integer
       user_experience:
         type: integer
-      user_level:
-        type: integer
       user_tier:
+        type: string
+      username:
         type: string
     type: object
   domain.BatikResponse:
