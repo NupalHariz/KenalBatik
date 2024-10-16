@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"kenalbatik-be/internal/domain"
+	"kenalbatik-be/internal/infra/helper"
 	quizRepo "kenalbatik-be/internal/quiz/repository"
 	userRepo "kenalbatik-be/internal/user/repository"
 	userAnswerRepo "kenalbatik-be/internal/userAnswer/repository"
@@ -139,10 +140,26 @@ func (s *quizService) CheckAnswer(ctx context.Context, userId uuid.UUID, userAns
 		return domain.AnswerResponse{}, err
 	}
 
+	var updatedUser domain.User
+	err = s.userRepo.FindUser(ctx, &updatedUser, domain.UserParam{ID: userId})
+	if err != nil {
+		return domain.AnswerResponse{}, err
+	}
+
+	var totalCorrenctAnswer int
+	for _, u := range updatedUser.UserQuiz {
+		totalCorrenctAnswer += u.TotalCorrectAnswer
+	}
+
 	res := domain.AnswerResponse{
-		CorrectAnswer:  correctAnswer,
-		UserExperience: user.Experience,
-		UserTier:       domain.UserTier(user.TierID),
+		Username:             updatedUser.Username,
+		UserExperience:       updatedUser.Experience,
+		UserTier:             domain.UserTier(updatedUser.TierID),
+		TierPhotoLink:        updatedUser.Tier.TierPhotoLink,
+		ExpToNextTier:        helper.GetNextExp(domain.UserTier(updatedUser.TierID)),
+		CurrentCorrectAnswer: correctAnswer,
+		TotalQuiz:            len(updatedUser.UserQuiz) * 5,
+		TotalCorrectAnswer:   totalCorrenctAnswer,
 	}
 
 	select {

@@ -25,15 +25,19 @@ type Quiz struct {
 
 type AnswerRequest struct {
 	QuizID     []int     `json:"quiz_id"`
-	UserId     uuid.UUID `json:"user_id"`
+	UserId     uuid.UUID `json:"-"`
 	UserAnswer []string  `json:"user_answer"`
 }
 
 type AnswerResponse struct {
-	CorrectAnswer  int      `json:"correct_answer"`
-	UserLevel      int      `json:"user_level"`
-	UserExperience int      `json:"user_experience"`
-	UserTier       UserTier `json:"user_tier"`
+	UserExperience       int      `json:"user_experience"`
+	Username             string   `json:"username"`
+	UserTier             UserTier `json:"user_tier"`
+	TierPhotoLink        string   `json:"tier_photo_link"`
+	ExpToNextTier        int      `json:"exp_to_next_tier"`
+	CurrentCorrectAnswer int      `json:"current_correct_answer"`
+	TotalQuiz            int      `json:"total_quiz"`
+	TotalCorrectAnswer   int      `json:"total_correct_answer"`
 }
 
 type QuizParams struct {
