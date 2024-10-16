@@ -716,7 +716,7 @@ paths:
             $ref: '#/definitions/helper.ErrorResponse'
       tags:
       - users
-  /users/reset-password/{resetPasswordToken}:
+  /users/reset-password:
     post:
       consumes:
       - application/json

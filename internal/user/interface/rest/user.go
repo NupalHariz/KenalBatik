@@ -275,7 +275,7 @@ func (h *UserHandler) ForgotPassword(ctx *gin.Context) {
 // @Failure 404 {object} helper.ErrorResponse
 // @Failure 408 {object} helper.ErrorResponse
 // @Failure 500 {object} helper.ErrorResponse
-// @Router /users/reset-password/{resetPasswordToken} [post]
+// @Router /users/reset-password [post]
 func (h *UserHandler) ResetPassword(ctx *gin.Context) {
 	var (
 		userResetPassword domain.ResetPassword

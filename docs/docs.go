@@ -859,7 +859,7 @@ var doc = `{
                 }
             }
         },
-        "/users/reset-password/{resetPasswordToken}": {
+        "/users/reset-password": {
             "post": {
                 "description": "Reset Password",
                 "consumes": [
