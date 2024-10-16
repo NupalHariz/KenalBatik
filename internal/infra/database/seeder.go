@@ -612,6 +612,63 @@ func generateBatik(db *gorm.DB) {
 			IslandID:    7,  // Nusa Tenggara
 			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/NTB/TariPersean.png?t=2024-10-14T15%3A44%3A43.563Z",
 		},
+		//Bali
+		{
+			Name:        "Batik Merak Abyorhokokai",
+			Description: "Batik Merak Abyorhokokai adalah jenis batik khas Bali yang menggambarkan keindahan dan kemegahan burung merak. Motif ini terkenal dengan detailnya yang halus dan penggunaan warna-warna cerah yang merepresentasikan keindahan alam Bali. Dalam budaya Bali, merak sering kali melambangkan keanggunan dan kekuatan, yang tercermin dalam motif batik ini. Setiap helaian kain Batik Merak Abyorhokokai sering digunakan dalam upacara keagamaan dan kegiatan adat sebagai lambang kemuliaan. Pembuatan batik ini memerlukan ketelitian dan kecermatan tinggi, mulai dari proses menggambar motif hingga pewarnaan. Dengan desain yang elegan dan penuh makna, batik ini menjadi salah satu kebanggaan masyarakat Bali dan diminati wisatawan.",
+			City:        "Denpasar",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Merak%20Abyorhokokai.jpg?t=2024-10-16T09%3A54%3A44.783Z",
+		},
+		{
+			Name:        "Batik Buketan",
+			Description: "Batik Buketan merupakan salah satu jenis batik yang berasal dari Bali, dengan motif bunga yang menjadi ciri khasnya. Nama \"buketan\" diambil dari kata \"bouquet\" yang berarti rangkaian bunga. Motif ini biasanya menampilkan bunga-bunga indah yang disusun sedemikian rupa sehingga menciptakan harmoni visual yang memukau. Warna-warna yang digunakan dalam Batik Buketan sering kali cerah dan menggambarkan semangat serta keceriaan masyarakat Bali. Pembuatan Batik Buketan melibatkan proses yang rumit mulai dari pembuatan pola, pencantingan, hingga pewarnaan yang memerlukan kesabaran dan keterampilan. Selain digunakan dalam kegiatan sehari-hari, Batik Buketan juga sering dipakai dalam acara-acara adat dan keagamaan. Keindahan motifnya membuat batik ini menjadi salah satu pilihan oleh-oleh khas Bali.",
+			City:        "Singaraja",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Buketan.jpeg?t=2024-10-16T09%3A54%3A57.003Z",
+		},
+		{
+			Name:        "Batik Barong Bali",
+			Description: "Batik Barong Bali adalah batik yang mengusung tema Barong, yang merupakan simbol kekuatan pelindung dalam kepercayaan masyarakat Bali. Motif Barong ini menampilkan wujud Barong sebagai pelindung dari roh jahat, dan sering digunakan dalam upacara adat sebagai lambang perlindungan dan keselamatan. Batik ini tidak hanya sekadar kain, tetapi juga sarana untuk menyampaikan nilai-nilai kebudayaan Bali. Warna-warna yang digunakan biasanya dominan merah, hitam, dan kuning, yang memberikan kesan magis dan sakral. Pembuatan Batik Barong Bali memerlukan ketelitian tinggi, mulai dari menggambar motif hingga proses pewarnaan yang dilakukan secara hati-hati. Batik ini sering dijadikan suvenir atau oleh-oleh khas bagi wisatawan yang berkunjung ke Bali karena mengandung filosofi dan nilai budaya yang mendalam.",
+			City:        "Gianyar",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Barong%20Bali.webp?t=2024-10-16T09%3A55%3A12.464Z",
+		},
+		{
+			Name:        "Batik Pisan Bali",
+			Description: "Batik Pisan Bali adalah salah satu batik yang menggabungkan motif pisang dengan sentuhan seni khas Bali. Motif pisang ini melambangkan kemakmuran dan keberkahan, yang sangat dihargai dalam budaya Bali. Selain itu, motif ini juga menggambarkan hubungan yang erat antara manusia dan alam. Warna-warna yang digunakan pada Batik Pisan Bali biasanya natural dan terinspirasi dari alam, seperti hijau daun, coklat tanah, dan biru laut. Proses pembuatannya memerlukan ketelitian, terutama pada saat mencanting pola pisang yang menjadi ciri khasnya. Batik ini sering digunakan dalam kegiatan sehari-hari maupun upacara adat, serta menjadi pilihan favorit sebagai oleh-oleh bagi para wisatawan yang ingin membawa pulang sedikit keindahan Bali. Keunikannya menjadikan Batik Pisan Bali sebagai salah satu kekayaan budaya yang dilestarikan di pulau ini.",
+			City:        "Tabanan",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Pisan.png?t=2024-10-16T09%3A55%3A29.633Z",
+		},
+		{
+			Name:        "Batik Ulamsari",
+			Description: "Batik Ulamsari merupakan batik khas Bali yang menampilkan motif-motif flora dan fauna laut, seperti ikan, terumbu karang, dan bunga-bunga laut. Motif ini terinspirasi dari keindahan alam bawah laut Bali yang terkenal di seluruh dunia. Warna-warna yang digunakan pada Batik Ulamsari biasanya cerah, menggambarkan keindahan dan keragaman kehidupan laut. Setiap motif yang digoreskan di atas kain mencerminkan hubungan yang erat antara masyarakat Bali dengan laut sebagai sumber kehidupan dan inspirasi. Pembuatan Batik Ulamsari melalui berbagai tahapan yang membutuhkan keahlian khusus, mulai dari menggambar pola hingga proses pewarnaan yang dilakukan secara manual. Batik ini menjadi salah satu produk unggulan yang banyak dicari oleh para pecinta seni dan budaya Bali, serta menjadi suvenir favorit bagi para wisatawan.",
+			City:        "Denpasar",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Ulamsari.jpg?t=2024-10-16T09%3A55%3A45.907Z",
+		},
+		{
+			Name:        "Batik Penari Bali",
+			Description: "Batik Penari Bali adalah batik dengan motif yang menggambarkan keindahan gerakan tari-tarian Bali. Motif ini sering menampilkan sosok penari dengan kostum tradisional Bali yang penuh detail. Tarian dalam motif ini melambangkan keanggunan, keseimbangan, dan harmoni antara manusia dan alam. Warna yang digunakan pada Batik Penari Bali sering kali cerah dan dinamis, mencerminkan energi yang ada dalam setiap gerakan tarian Bali. Proses pembuatan batik ini membutuhkan ketelitian tinggi, terutama dalam menggambarkan detail-detail motif penari yang khas. Batik Penari Bali sering digunakan dalam acara-acara adat dan keagamaan, serta menjadi salah satu daya tarik bagi wisatawan yang ingin membawa pulang kain khas Bali yang kaya akan nilai seni dan budaya.",
+			City:        "Ubud",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/PenariBali.webp?t=2024-10-16T09%3A55%3A54.659Z",
+		},
+		{
+			Name:        "Batik Singa Barong",
+			Description: "Batik Singa Barong adalah jenis batik Bali yang menampilkan motif singa sebagai simbol kekuatan dan keberanian. Dalam budaya Bali, singa sering kali dianggap sebagai penjaga dan pelindung, yang digambarkan dengan megah dalam motif batik ini. Warna-warna yang digunakan pada Batik Singa Barong biasanya kaya dan kontras, seperti merah, emas, dan hitam, yang memberikan kesan kekuatan dan wibawa. Batik ini sering digunakan dalam upacara adat dan kegiatan budaya sebagai simbol perlindungan dan keberanian. Pembuatan Batik Singa Barong memerlukan keahlian tinggi dalam mencanting dan mewarnai, sehingga menghasilkan motif yang detail dan indah. Batik ini menjadi salah satu pilihan oleh-oleh khas bagi wisatawan yang ingin mengenal lebih dalam tentang kebudayaan Bali dan nilai-nilai yang dijunjung tinggi oleh masyarakatnya.",
+			City:        "Klungkung",
+			ProvinceID:  17,
+			IslandID:    9,
+			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Singa%20Barong.jpg?t=2024-10-16T09%3A56%3A03.536Z",
+		},
 	}
 
 	if err := db.CreateInBatches(batikSeeder, len(*batikSeeder)).Error; err != nil {
@@ -735,6 +792,9 @@ func generateIsland(db *gorm.DB) {
 		},
 		{
 			Name: "Nusa Tenggara Timur",
+		},
+		{
+			Name: "Bali",
 		},
 	}
 
