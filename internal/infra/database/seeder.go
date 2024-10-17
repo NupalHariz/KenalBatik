@@ -619,7 +619,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Denpasar",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Merak%20Abyorhokokai.jpg?t=2024-10-16T09%3A54%3A44.783Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Merak%20Abyorhokokai.jpg?t=2024-10-16T09%3A54%3A44.783Z",
 		},
 		{
 			Name:        "Batik Buketan",
@@ -627,7 +627,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Singaraja",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Buketan.jpeg?t=2024-10-16T09%3A54%3A57.003Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Buketan.jpeg?t=2024-10-16T09%3A54%3A57.003Z",
 		},
 		{
 			Name:        "Batik Barong Bali",
@@ -635,7 +635,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Gianyar",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Barong%20Bali.webp?t=2024-10-16T09%3A55%3A12.464Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Barong%20Bali.webp?t=2024-10-16T09%3A55%3A12.464Z",
 		},
 		{
 			Name:        "Batik Pisan Bali",
@@ -643,7 +643,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Tabanan",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Pisan.png?t=2024-10-16T09%3A55%3A29.633Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Pisan.png?t=2024-10-16T09%3A55%3A29.633Z",
 		},
 		{
 			Name:        "Batik Ulamsari",
@@ -651,7 +651,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Denpasar",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Ulamsari.jpg?t=2024-10-16T09%3A55%3A45.907Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Ulamsari.jpg?t=2024-10-16T09%3A55%3A45.907Z",
 		},
 		{
 			Name:        "Batik Penari Bali",
@@ -659,7 +659,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Ubud",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/PenariBali.webp?t=2024-10-16T09%3A55%3A54.659Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/PenariBali.webp?t=2024-10-16T09%3A55%3A54.659Z",
 		},
 		{
 			Name:        "Batik Singa Barong",
@@ -667,7 +667,7 @@ func generateBatik(db *gorm.DB) {
 			City:        "Klungkung",
 			ProvinceID:  17,
 			IslandID:    9,
-			Link_Image: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Singa%20Barong.jpg?t=2024-10-16T09%3A56%3A03.536Z",
+			Link_Image:  "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Batik/Bali/Singa%20Barong.jpg?t=2024-10-16T09%3A56%3A03.536Z",
 		},
 	}
 
@@ -722,44 +722,44 @@ func generateQuiz(db *gorm.DB) {
 
 func generateProvince(db *gorm.DB) {
 	var provinces = []domain.Province{
-		{Name: "Aceh"},
-		{Name: "Sumatera Utara"},
-		{Name: "Sumatera Barat"},
-		{Name: "Riau"},
-		{Name: "Kepulauan Riau"},
-		{Name: "Jambi"},
-		{Name: "Sumatera Selatan"},
-		{Name: "Bangka Belitung"},
-		{Name: "Bengkulu"},
-		{Name: "Lampung"},
-		{Name: "DKI Jakarta"},
-		{Name: "Jawa Barat"},
-		{Name: "Banten"},
-		{Name: "Jawa Tengah"},
-		{Name: "DI Yogyakarta"},
-		{Name: "Jawa Timur"},
-		{Name: "Bali"},
-		{Name: "Nusa Tenggara Barat"},
-		{Name: "Nusa Tenggara Timur"},
-		{Name: "Kalimantan Barat"},
-		{Name: "Kalimantan Tengah"},
-		{Name: "Kalimantan Selatan"},
-		{Name: "Kalimantan Timur"},
-		{Name: "Kalimantan Utara"},
-		{Name: "Sulawesi Utara"},
-		{Name: "Gorontalo"},
-		{Name: "Sulawesi Tengah"},
-		{Name: "Sulawesi Barat"},
-		{Name: "Sulawesi Selatan"},
-		{Name: "Sulawesi Tenggara"},
-		{Name: "Maluku"},
-		{Name: "Maluku Utara"},
-		{Name: "Papua"},
-		{Name: "Papua Barat"},
-		{Name: "Papua Tengah"},
-		{Name: "Papua Pegunungan"},
-		{Name: "Papua Selatan"},
-		{Name: "Papua Barat Daya"},
+		{Name: "Aceh", IslandID: 2},                // Sumatra
+		{Name: "Sumatera Utara", IslandID: 2},      // Sumatra
+		{Name: "Sumatera Barat", IslandID: 2},      // Sumatra
+		{Name: "Riau", IslandID: 2},                // Sumatra
+		{Name: "Kepulauan Riau", IslandID: 2},      // Sumatra
+		{Name: "Jambi", IslandID: 2},               // Sumatra
+		{Name: "Sumatera Selatan", IslandID: 2},    // Sumatra
+		{Name: "Bangka Belitung", IslandID: 2},     // Sumatra
+		{Name: "Bengkulu", IslandID: 2},            // Sumatra
+		{Name: "Lampung", IslandID: 2},             // Sumatra
+		{Name: "DKI Jakarta", IslandID: 1},         // Jawa
+		{Name: "Jawa Barat", IslandID: 1},          // Jawa
+		{Name: "Banten", IslandID: 1},              // Jawa
+		{Name: "Jawa Tengah", IslandID: 1},         // Jawa
+		{Name: "DI Yogyakarta", IslandID: 1},       // Jawa
+		{Name: "Jawa Timur", IslandID: 1},          // Jawa
+		{Name: "Bali", IslandID: 9},                // Bali
+		{Name: "Nusa Tenggara Barat", IslandID: 7}, // NTB
+		{Name: "Nusa Tenggara Timur", IslandID: 8}, // NTT
+		{Name: "Kalimantan Barat", IslandID: 3},    // Kalimantan
+		{Name: "Kalimantan Tengah", IslandID: 3},   // Kalimantan
+		{Name: "Kalimantan Selatan", IslandID: 3},  // Kalimantan
+		{Name: "Kalimantan Timur", IslandID: 3},    // Kalimantan
+		{Name: "Kalimantan Utara", IslandID: 3},    // Kalimantan
+		{Name: "Sulawesi Utara", IslandID: 4},      // Sulawesi
+		{Name: "Gorontalo", IslandID: 4},           // Sulawesi
+		{Name: "Sulawesi Tengah", IslandID: 4},     // Sulawesi
+		{Name: "Sulawesi Barat", IslandID: 4},      // Sulawesi
+		{Name: "Sulawesi Selatan", IslandID: 4},    // Sulawesi
+		{Name: "Sulawesi Tenggara", IslandID: 4},   // Sulawesi
+		{Name: "Maluku", IslandID: 6},              // Maluku
+		{Name: "Maluku Utara", IslandID: 6},        // Maluku
+		{Name: "Papua", IslandID: 5},               // Papua
+		{Name: "Papua Barat", IslandID: 5},         // Papua
+		{Name: "Papua Tengah", IslandID: 5},        // Papua
+		{Name: "Papua Pegunungan", IslandID: 5},    // Papua
+		{Name: "Papua Selatan", IslandID: 5},       // Papua
+		{Name: "Papua Barat Daya", IslandID: 5},    // Papua
 	}
 
 	if err := db.CreateInBatches(provinces, len(provinces)).Error; err != nil {
@@ -806,23 +806,23 @@ func generateIsland(db *gorm.DB) {
 func generateTier(db *gorm.DB) {
 	tier := []domain.Tier{
 		{
-			Tier: string(domain.TIER1),
+			Tier:          string(domain.TIER1),
 			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20PEMULA.svg?t=2024-10-15T15%3A41%3A04.408Z",
 		},
 		{
-			Tier: string(domain.TIER2),
+			Tier:          string(domain.TIER2),
 			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20PENJELAJAH.svg?t=2024-10-15T15%3A41%3A14.083Z",
 		},
 		{
-			Tier: string(domain.TIER3),
+			Tier:          string(domain.TIER3),
 			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20SATRIA.svg?t=2024-10-15T15%3A41%3A21.448Z",
 		},
 		{
-			Tier: string(domain.TIER4),
+			Tier:          string(domain.TIER4),
 			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20JAWARA.svg?t=2024-10-15T15%3A41%3A36.069Z",
 		},
 		{
-			Tier: string(domain.TIER5),
+			Tier:          string(domain.TIER5),
 			TierPhotoLink: "https://jjittozptnoaoseyrvcz.supabase.co/storage/v1/object/public/hology/Tier/BATIK%20LEGENDA.svg",
 		},
 	}

@@ -4,8 +4,8 @@ import "kenalbatik-be/internal/domain"
 
 func Migrate() {
 	err := DB.Migrator().AutoMigrate(
-		&domain.Province{},
 		&domain.Island{},
+		&domain.Province{},
 		&domain.Batik{},
 		&domain.User{},
 		&domain.Tier{},
