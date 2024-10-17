@@ -7,6 +7,7 @@ import (
 	"kenalbatik-be/internal/infra/helper"
 	"kenalbatik-be/internal/infra/jwt"
 	"kenalbatik-be/internal/user/repository"
+	"log"
 	"time"
 
 	"github.com/google/uuid"
@@ -180,7 +181,13 @@ func (s *userService) ForgotPassword(ctx context.Context, userForgot domain.User
 		return err
 	}
 
-	err = s.goMail.SendEmail(subject, HTMLbody, user.Email)
+	go func() {
+		err = s.goMail.SendEmail(subject, HTMLbody, user.Email)
+		if err != nil {
+			log.Println("Error sending email: ", err)
+		}
+	}()
+	
 	
 	select {
 	case <-ctx.Done():
