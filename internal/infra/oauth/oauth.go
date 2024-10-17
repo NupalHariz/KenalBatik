@@ -1,6 +1,7 @@
 package oauth
 
 import (
+	"fmt"
 	"kenalbatik-be/internal/infra/env"
 	"net/http"
 
@@ -21,7 +22,7 @@ type OauthStruct struct {
 var Oauth = getOauth()
 
 func getOauth() OauthInterface {
-	redirectUrl := "http://localhost:" + env.AppEnv.APP_PORT + "/api/v1/users/oauth/callback"
+	redirectUrl := fmt.Sprintf("http://%s:%s/api/v1/users/oauth/callback", env.AppEnv.APP_HOST, env.AppEnv.APP_PORT)
 
 	config := &oauth2.Config{
 		ClientID:     env.AppEnv.GOOGLE_CLIENT_ID,
