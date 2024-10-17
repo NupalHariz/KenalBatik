@@ -298,11 +298,6 @@ func (h *UserHandler) ResetPassword(ctx *gin.Context) {
 
 	err = ctx.ShouldBindJSON(&userResetPassword)
 
-	if userResetPassword.Password != userResetPassword.ConfirmPassword {
-		err = domain.ErrPasswordNotMatch
-		return
-	}
-
 	if err != nil {
 		return
 	}
