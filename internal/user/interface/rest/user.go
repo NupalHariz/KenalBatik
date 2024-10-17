@@ -252,9 +252,7 @@ func (h *UserHandler) ForgotPassword(ctx *gin.Context) {
 		return
 	}
 
-	referer := ctx.Request.Referer()
-
-	err = h.userSvc.ForgotPassword(ctx.Request.Context(), userForgotPassword, referer)
+	err = h.userSvc.ForgotPassword(ctx.Request.Context(), userForgotPassword)
 	code = domain.GetCode(err)
 
 	if err != nil {

@@ -17,7 +17,7 @@ type UserService interface {
 	RegisterUser(ctx context.Context, userRegister domain.UserRegister) error
 	Login(ctx context.Context, userLogin domain.UserLogin) (domain.UserLoginResponse, error)
 	Oauth(ctx context.Context, user domain.UserOauth) (string, error)
-	ForgotPassword(ctx context.Context, user domain.UserForgotPassword, referer string) error
+	ForgotPassword(ctx context.Context, userForgot domain.UserForgotPassword) error
 	ResetPassword(ctx context.Context, userReset domain.ResetPassword) error
 	GetUserByID(ctx context.Context, userId uuid.UUID) (domain.UserProfile, error)
 }
@@ -153,7 +153,7 @@ func (s *userService) Oauth(ctx context.Context, user domain.UserOauth) (string,
 	}
 }
 
-func (s *userService) ForgotPassword(ctx context.Context, userForgot domain.UserForgotPassword, referer string) error {
+func (s *userService) ForgotPassword(ctx context.Context, userForgot domain.UserForgotPassword) error {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
